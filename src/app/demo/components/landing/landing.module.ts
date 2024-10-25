@@ -7,7 +7,8 @@ import { RouterModule } from '@angular/router';
 import { StyleClassModule } from 'primeng/styleclass';
 import { AppConfigModule } from 'src/app/layout/config/app.config.module';
 import { AnimateEnterDirective } from './animateenter.directive'; 
-
+import { CarouselModule } from 'primeng/carousel';
+import { TagModule } from 'primeng/tag';
 @NgModule({
     imports: [
         CommonModule,
@@ -16,6 +17,8 @@ import { AnimateEnterDirective } from './animateenter.directive';
         RouterModule,
         StyleClassModule,
         AppConfigModule,
+        CarouselModule,
+        TagModule
     ],
     declarations: [LandingComponent, AnimateEnterDirective]
 })

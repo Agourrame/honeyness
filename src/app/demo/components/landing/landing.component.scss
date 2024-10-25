@@ -27,3 +27,11 @@
       transform: translateX(0%);
     }
   }
+
+  .custom-card {
+    height: 280px;
+    overflow: hidden;
+    background-color: #f5f5f5;
+    color: black;
+    font-weight: bold;
+}
