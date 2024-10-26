@@ -1,0 +1,76 @@
+<div id="home"
+                class="grid grid-nogutter justify-content-between align-items-center mb-6 py-6 md:mb-8 md:py-8">
+                <div
+                    class="col-12 md:col-4 flex flex-column gap-4 flex-order-1 md:flex-order-0 align-items-center md:align-items-start text-center md:text-left">
+                    <span class="block text-900 font-bold text-4xl">Crafted by Nature, Delivered with Care</span>
+                    <span class="block text-700 text-lg">Pure, Natural <b style="color: #fcd34e;">Honey</b> Straight from the Hive to Your Home</span>
+                    <ul class="flex flex-wrap gap-5 list-none p-0">
+                        <li class="flex align-items-center">
+                            <div class="p-1 border-circle bg-green-400 inline-block mr-2"></div>
+                            <span class="text-900 font-semibold">raw</span>
+                        </li>
+                        <li class="flex align-items-center">
+                            <div class="p-1 border-circle bg-green-400 inline-block mr-2"></div>
+                            <span class="text-900 font-semibold">Natural</span>
+                        </li>
+                        <li class="flex align-items-center">
+                            <div class="p-1 border-circle bg-green-400 inline-block mr-2"></div>
+                            <span class="text-900 font-semibold">Pure & Unprocessed</span>
+                        </li>
+                    </ul>
+
+                </div>
+
+                <div class="col-12 md:col-7 flex-order-0 md:flex-order-1 mb-6 md:mb-0 border-round" style="display: flex;align-items: center;justify-content: center;">
+                    <img animateEnter="moveinright"
+                        src="assets/demo/images/honey.png" alt="" width="150"
+                        class=" border-round shadow-2 animation-duration-1000 animation-ease-out">
+                </div>
+            </div> 
+            
+            
+            
+            
+            
+            <div id="pricing" class="my-5 py-6 md:my-8 md:py-8" >
+                <div class="text-900 font-bold text-5xl mb-4 text-center">Categories 1</div>
+                <span class="block text-700 text-lg text-center">Pure, Natural <b style="color: #775a00;">Honey</b> Straight from the Hive to Your Home</span>
+                <div class=" mt-4">
+                    <p-carousel 
+                        [value]="products" 
+                        [numVisible]="4" 
+                        [numScroll]="1" 
+                        [circular]="true" 
+                        [showIndicators]="false"
+                        [responsiveOptions]="responsiveOptions"
+                        >
+                            <ng-template let-product pTemplate="item">
+                                <div class="custom-card border-1 surface-border border-round m-2 p-3">
+                                    <div class="mb-3">
+                                        <div class="relative mx-auto">
+                                            <img 
+                                                [src]="product.img" 
+                                                [alt]="product.label" 
+                                                class="w-full border-round" />
+                                            <p-tag 
+                                                [value]="product.status"
+                                                class="absolute" 
+                                                [ngStyle]="{ 'left.px': 5, 'top.px': 5 }" />
+                                        </div>
+                                    </div>
+                                    <div class="mb-3 font-medium">
+                                        {{ product.label }}
+                                    </div>
+                                    <div class="flex justify-content-between align-items-center">
+                                    <div class="mt-0 font-semibold text-xl text-yellow-400">
+                                        {{ product.price +' DH' }}
+                                    </div>
+                                    <span>
+                                        <p-button routerLink="/landing/buy" label="buy" icon="pi pi-shopping-cart" styleClass="ml-2" />
+                                    </span>
+                                    </div>
+                                </div>
+                            </ng-template>
+                    </p-carousel>
+                </div>
+            </div>

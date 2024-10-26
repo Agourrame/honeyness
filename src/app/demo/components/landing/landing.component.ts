@@ -2,7 +2,9 @@ import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { LayoutService } from 'src/app/layout/service/app.layout.service';
 import { Subscription } from 'rxjs';
-import { ProductService } from '../../service/product.service';
+
+import { ProductService } from '../../services/product.service';
+import { product } from '../../model/product';
 @Component({
     templateUrl: './landing.component.html',
     styleUrls: ['./landing.component.scss'],
@@ -10,7 +12,7 @@ import { ProductService } from '../../service/product.service';
 })
 export class LandingComponent implements OnDestroy,OnInit {
 
-    products: any[]=[];
+    products: product[]=[];
 
     responsiveOptions: any[]=[];
 
@@ -19,15 +21,19 @@ export class LandingComponent implements OnDestroy,OnInit {
     darkMode: boolean = false;
 
 
-    constructor(public router: Router, private layoutService: LayoutService,private productService: ProductService) {
+    constructor(public router: Router, private layoutService: LayoutService,private proservice:ProductService) {
         this.subscription = this.layoutService.configUpdate$.subscribe(config => {
             this.darkMode = config.colorScheme === 'dark' || config.colorScheme === 'dim' ? true : false;
         });
     }
     ngOnInit(): void {
-        this.productService.getProductsSmall().then((products) => {
-            this.products = products;
-        });
+
+        this.proservice.getProduct().subscribe((ele)=>{
+            console.log(ele)
+            this.products = ele as product[];
+        })
+
+       
 
         this.responsiveOptions = [
             {

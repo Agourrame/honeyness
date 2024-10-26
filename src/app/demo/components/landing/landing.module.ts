@@ -9,6 +9,7 @@ import { AppConfigModule } from 'src/app/layout/config/app.config.module';
 import { AnimateEnterDirective } from './animateenter.directive'; 
 import { CarouselModule } from 'primeng/carousel';
 import { TagModule } from 'primeng/tag';
+import { HomeComponent } from './home/home.component';
 @NgModule({
     imports: [
         CommonModule,
