@@ -1,6 +1,6 @@
 import { CommonModule } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
-import { RouterModule } from '@angular/router';
+import { Router, RouterModule } from '@angular/router';
 import { ButtonModule } from 'primeng/button';
 import { CarouselModule } from 'primeng/carousel';
 import { TagModule } from 'primeng/tag';
@@ -25,8 +25,12 @@ export class HomeComponent implements OnInit{
   products:product[]=[];
   responsiveOptions: any[]=[];
 
-  constructor(private proservice:ProductService){
+  constructor(private proservice:ProductService,private router:Router){
 
+  }
+
+  sendId(ID:string) {
+    this.router.navigate(['/landing/buy'], { queryParams: { id: ID } });
   }
 
   ngOnInit(): void {

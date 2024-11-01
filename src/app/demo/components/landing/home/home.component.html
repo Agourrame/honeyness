@@ -66,7 +66,7 @@
                                         {{ product.price +' DH' }}
                                     </div>
                                     <span>
-                                        <p-button routerLink="/landing/buy" label="buy" icon="pi pi-shopping-cart" styleClass="ml-2" />
+                                        <p-button (onClick)="sendId(product.id)" label="buy" icon="pi pi-shopping-cart" styleClass="ml-2" />
                                     </span>
                                     </div>
                                 </div>

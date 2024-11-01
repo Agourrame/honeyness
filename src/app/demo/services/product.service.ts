@@ -8,9 +8,11 @@ import {
     deleteDoc,
     doc,
     getFirestore,
+    query,
     updateDoc,
+    where,
 } from '@angular/fire/firestore';
-import { Observable } from 'rxjs';
+import { BehaviorSubject, Observable } from 'rxjs';
 import { product } from '../model/product';
 import { MessageService } from 'primeng/api';
 
@@ -27,10 +29,17 @@ export class ProductService {
         this.fire = getFirestore(afApp);
     }
 
+
     getProduct(): Observable<product[]> {
         const pro = collection(this.fire, 'Product');
         return collectionData(pro, { idField: 'id' }) as Observable<product[]>;
     }
+
+    // getProductByID(id:string): Observable<product[]> {
+    //     const pro = collection(this.fire, 'Product');
+    //     const q = query(pro,where('ID','==',id));
+    //     return collectionData(q, { idField: 'id' }) as Observable<product[]>;
+    // }
 
     AddProduct(pro: product) {
         const db = collection(this.fire, 'Product');
