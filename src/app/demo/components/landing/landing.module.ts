@@ -10,6 +10,7 @@ import { AnimateEnterDirective } from './animateenter.directive';
 import { CarouselModule } from 'primeng/carousel';
 import { TagModule } from 'primeng/tag';
 import { HomeComponent } from './home/home.component';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 @NgModule({
     imports: [
         CommonModule,
@@ -19,7 +20,9 @@ import { HomeComponent } from './home/home.component';
         StyleClassModule,
         AppConfigModule,
         CarouselModule,
-        TagModule
+        TagModule,
+        ReactiveFormsModule,
+        FormsModule
     ],
     declarations: [LandingComponent, AnimateEnterDirective]
 })

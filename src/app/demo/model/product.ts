@@ -12,10 +12,10 @@ export interface product{
 
 export interface order{
     id?:string;
-    product?:product[];
+    product?:product;
     email?:string;
     customer?:string;
-    adress?:string;
+    address?:string;
     order?:number;
     total?:number;
     date?:Date;

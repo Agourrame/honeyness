@@ -14,17 +14,19 @@
             </ul>
 
             <div class="pb-3 surface-border">
-                <span class="text-900 font-medium text-xl">Your Cart</span>
+                <span class="text-900 font-medium text-xl">{{productSelected.label}}</span>
+                <br>
+                <span class="text-400 font-medium text-xl">{{productSelected.discreption}}</span>
             </div>
             <div class="flex flex-column lg:flex-row flex-wrap lg:align-items-center py-2 mt-3 surface-border">
                 <img [src]="productSelected.img" class="w-8rem h-8rem flex-shrink-0 mb-3" alt="product"/>
                 <div class="flex-auto lg:ml-3">
                     <div class="flex align-items-center justify-content-between mb-3">
-                        <span class="text-900 font-bold">{{productSelected.label}}</span>
-                        <span class="text-900 font-bold">{{productSelected.price + ' DH'}}</span>
+                        <!-- <span class="text-900 font-bold">{{productSelected.label}}</span> -->
+                        <!-- <span class="text-900 font-bold">{{productSelected.price + ' DH'}}</span> -->
                     </div>
                     <div class="flex flex-auto justify-content-between align-items-center">
-                        <p-inputNumber [showButtons]="true" buttonLayout="horizontal" spinnerMode="horizontal" [min]="0" inputStyleClass="w-2rem text-center py-2 px-1 border-transparent outline-none shadow-none" [(ngModel)]="quantities[0]" 
+                        <p-inputNumber [showButtons]="true" buttonLayout="horizontal" spinnerMode="horizontal" [min]="0" inputStyleClass="w-2rem text-center py-2 px-1 border-transparent outline-none shadow-none" (onInput)="showorder($event)" [(ngModel)]="quantities[0]" 
                         class="border-1 surface-border border-round" decrementButtonClass="p-button-text text-600 hover:text-primary py-1 px-1" incrementButtonClass="p-button-text text-600 hover:text-primary py-1 px-1" incrementButtonIcon="pi pi-plus" decrementButtonIcon="pi pi-minus"></p-inputNumber>
                         <!-- <button pButton pRipple icon="pi pi-trash" class="p-button-text p-button-rounded"></button> -->
                     </div>
@@ -54,30 +56,38 @@
 
 
             
-            <div class="grid formgrid">
+            <div class="grid formgrid" [formGroup]="orderForm">
+  
+                <div class="col-12 field mb-4">
+                  <span class="text-900 text-2xl block font-medium mb-5">Order Information</span>
+                  <input id="name" placeholder="Name" type="text" formControlName="name" class="p-inputtext w-full" />
+                  <div *ngIf="orderForm.get('name')?.invalid && orderForm.get('name')?.touched" class="text-red-500">
+                    Name is required.
+                  </div>
+                </div>
                 
                 <div class="col-12 field mb-4">
-                    <span class="text-900 text-2xl block font-medium mb-5">Order Information</span>
-                    <input id="name" placeholder="Name" type="text" class="p-inputtext w-full">
+                  <input id="email" placeholder="Email" type="text" formControlName="email" class="p-inputtext w-full" />
                 </div>
+                
                 <div class="col-12 field mb-4">
-                    <input id="email" placeholder="Email" type="text" class="p-inputtext w-full">
+                  <input id="address" placeholder="Address" type="text" formControlName="address" class="p-inputtext w-full" />
+                  <div *ngIf="orderForm.get('address')?.invalid && orderForm.get('address')?.touched" class="text-red-500">
+                    Address is required.
+                  </div>
                 </div>
-                <div class="col-12 field mb-4">
-                    <input id="address" placeholder="Address" type="text" class="p-inputtext w-full">
-                </div>
-                <div class="col-12 lg:col-6 field mb-4">
-                    <input id="city" placeholder="City" type="text" class="p-inputtext w-full">
-                </div>
-                <div class="col-12 lg:col-6 field mb-4 flex align-items-center ">
-                    <p-checkbox name="checkbox-1" [(ngModel)]="checked2" [binary]="true" label="Save for next purchase" class="text-900" inputId="id"></p-checkbox>
-                </div>
-
+                
+                <!-- <div class="col-12 lg:col-6 field mb-4 flex align-items-center">
+                  <p-checkbox formControlName="saveForNextPurchase" label="Save for next purchase" class="text-900" inputId="id"></p-checkbox>
+                </div> -->
+              
                 <div class="col-12 flex flex-column lg:flex-row justify-content-center align-items-center lg:justify-content-end my-6">
-                    <button pButton pRipple class="p-button-secondary p-button-outlined mt-3 lg:mt-0 w-full lg:w-auto flex-order-2 lg:flex-order-1 lg:mr-4" label="Return to Cart" icon="pi pi-fw pi-arrow-left"></button>
-                    <button pButton pRipple class="p-button-primary w-full lg:w-auto flex-order-1 lg:flex-order-2" label="Confirm order" icon="pi pi-fw pi-check"></button>
+                  <button pButton pRipple class="p-button-secondary p-button-outlined mt-3 lg:mt-0 w-full lg:w-auto flex-order-2 lg:flex-order-1 lg:mr-4" label="Return to Cart" icon="pi pi-fw pi-arrow-left"></button>
+                  <button pButton pRipple class="p-button-primary w-full lg:w-auto flex-order-1 lg:flex-order-2" label="Confirm order" icon="pi pi-fw pi-check" (click)="onSubmit()" [disabled]="orderForm.invalid"></button>
                 </div>
-            </div>
+              
+              </div>
+              
         </div>
 
 
@@ -86,3 +96,4 @@
     </div>
 </div>
 <br>
+<p-toast></p-toast>
