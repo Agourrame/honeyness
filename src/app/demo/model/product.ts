@@ -1,12 +1,13 @@
 export interface product{
     id?:string;
     label?:string;
-    discreption?:string;
+    description?:string;
     price?:number;
     category?:string;
     date?:Date;
     status?:string;
     img?:string;
+    quantity?:number;
 }
 
 

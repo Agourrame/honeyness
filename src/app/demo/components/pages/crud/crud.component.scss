@@ -1,0 +1,40 @@
+.file-upload-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 20px;
+  }
+  
+  input[type="file"] {
+    display: none; /* Hide the default file input */
+  }
+  
+  .file-upload-label {
+    display: inline-block;
+    padding: 10px 20px;
+    color: #4e4e4e;
+    background-color: #fcd34e;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+  
+  .file-upload-label:hover {
+    background-color: #fcd34e;
+  }
+  
+  .image-preview {
+    margin-top: 15px;
+    width: 100px;
+    height: 100px;
+    overflow: hidden;
+    border: 1px solid #aeaeae;
+    border-radius: 5px;
+  }
+  
+  .image-preview img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+  

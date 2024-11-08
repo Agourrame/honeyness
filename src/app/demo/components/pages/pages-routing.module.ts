@@ -11,6 +11,7 @@ import { RouterModule } from '@angular/router';
         { path: 'help', data: { breadcrumb: 'Help' }, loadChildren: () => import('./help/help.module').then(m => m.HelpModule) },
         { path: 'invoice', data: { breadcrumb: 'Invoice' }, loadChildren: () => import('./invoice/invoice.module').then(m => m.InvoiceModule) },
         { path: 'timeline', data: { breadcrumb: 'Timeline' }, loadChildren: () => import('./timeline/timelinedemo.module').then(m => m.TimelineDemoModule) },
+        { path: 'order', data: { breadcrumb: 'Order' }, loadChildren: () => import('./orders/orders.module').then(m => m.OrdersModule) },
         { path: '**', redirectTo: '/notfound' }
     ])],
     exports: [RouterModule]

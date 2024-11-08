@@ -66,12 +66,13 @@ export class ProductService {
         const washingtonRef = doc(this.fire, 'Product', id);
         updateDoc(washingtonRef, {
             label: pro.label,
-            discreption: pro.discreption,
+            discreption: pro.description,
             price: pro.price,
             category: pro.category,
             date: pro.date,
             status: pro.status,
-            img:pro.img
+            img:pro.img,
+            quantity:pro.quantity
         })
             .then(() => {
                 this.messageService.add({
