@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { order } from 'src/app/demo/model/product';
+import { order, product } from 'src/app/demo/model/product';
 import { FormsModule } from '@angular/forms';
 import { Table, TableModule } from 'primeng/table';
 import { FileUploadModule } from 'primeng/fileupload';
@@ -18,6 +18,7 @@ import { CalendarModule } from 'primeng/calendar';
 import { CommonModule } from '@angular/common';
 import { OrderService } from 'src/app/demo/services/order.service';
 import { TagModule } from 'primeng/tag';
+import { Router, RouterModule } from '@angular/router';
 @Component({
     selector: 'app-orders',
     standalone: true,
@@ -38,7 +39,8 @@ import { TagModule } from 'primeng/tag';
         InputNumberModule,
         DialogModule,
         CalendarModule,
-        TagModule
+        TagModule,
+        RouterModule
     ],
     templateUrl: './orders.component.html',
     styleUrl: './orders.component.scss',
@@ -48,7 +50,7 @@ export class OrdersComponent implements OnInit {
     selectedOrders: order[] = [];
     cols: any[] = [];
 
-    constructor(private orderserv:OrderService){
+    constructor(private orderserv:OrderService,private router:Router){
       this.orderserv.getOrder().subscribe((ele)=>{
         this.orders = ele as order[];
       })
@@ -70,5 +72,9 @@ export class OrdersComponent implements OnInit {
             (event.target as HTMLInputElement).value,
             'contains'
         );
+    }
+
+    showOrder(data:product){
+       this.router.navigate(['pages/orders/order'])
     }
 }

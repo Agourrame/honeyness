@@ -15,6 +15,7 @@ export interface order{
     id?:string;
     product?:product;
     email?:string;
+    phone?:string;
     customer?:string;
     address?:string;
     order?:number;
