@@ -49,14 +49,29 @@ export class TableComponent implements OnInit{
   orders: order[] = [];
   selectedOrders: order[] = [];
   cols: any[] = [];
+  nbOrders:number=0;
+  nbvalid:number=0;
+  nbunvalid:number=0;
 
   constructor(private orderserv:OrderService,private router:Router){
-    this.orderserv.getOrder().subscribe((ele)=>{
-      this.orders = ele as order[];
-    })
+
   }
 
   ngOnInit(): void {
+    this.nbOrders=0;
+    this.nbvalid=0;
+    this.nbunvalid=0;
+    this.orderserv.getOrder().subscribe((ele)=>{
+      this.orders = ele as order[];
+      this.orders.map((e)=>{
+        this.nbOrders++;
+        if(e.valid){
+          this.nbvalid++;
+        }else if(!e.valid){
+          this.nbunvalid++;
+        }
+      })
+    })
 
       this.cols = [
           { field: 'product', header: 'Product' },
@@ -77,5 +92,9 @@ export class TableComponent implements OnInit{
   showOrder(data:product){
      //this.router.navigate(['pages/orders/order'])
      this.router.navigate(['/pages/orders/order'], { queryParams: { id: data.id } });
+  }
+
+  viewd(id:string){
+    this.orderserv.UpdateView(id,true);
   }
 }

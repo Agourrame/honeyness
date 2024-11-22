@@ -8,6 +8,7 @@ import { OrderService } from 'src/app/demo/services/order.service';
 import { ChipModule } from 'primeng/chip';
 import { FormsModule } from '@angular/forms';
 import { TagModule } from 'primeng/tag';
+import { QrCodeModule } from 'ng-qrcode';
 @Component({
   selector: 'app-order',
   standalone: true,
@@ -17,7 +18,8 @@ import { TagModule } from 'primeng/tag';
     RippleModule,
     ChipModule,
     FormsModule,
-    TagModule
+    TagModule,
+    QrCodeModule
   ],
   templateUrl: './order.component.html',
   styleUrl: './order.component.scss'
@@ -42,6 +44,11 @@ export class OrderComponent implements OnInit{
 
   constructor(private route: ActivatedRoute,private orderserv:OrderService){
 
+  }
+
+
+  confirmation(status:boolean){
+     this.orderserv.UpdateConfermation(this.receivedID+'',status);
   }
 
 }

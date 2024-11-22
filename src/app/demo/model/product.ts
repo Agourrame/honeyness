@@ -23,4 +23,5 @@ export interface order{
     date?:Date;
     view?:boolean;
     valid?:boolean;
+    path?:string;
 }

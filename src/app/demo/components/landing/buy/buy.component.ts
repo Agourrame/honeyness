@@ -22,6 +22,8 @@ import { OrderService } from 'src/app/demo/services/order.service';
 import { ProductService } from 'src/app/demo/services/product.service';
 import { ToastModule } from 'primeng/toast';
 import emailjs, { EmailJSResponseStatus } from 'emailjs-com';
+import { DialogModule } from 'primeng/dialog';
+
 @Component({
     selector: 'app-buy',
     standalone: true,
@@ -37,7 +39,8 @@ import emailjs, { EmailJSResponseStatus } from 'emailjs-com';
         InputGroupModule,
         InputGroupAddonModule,
         ReactiveFormsModule,
-        ToastModule
+        ToastModule,
+        DialogModule
     ],
     templateUrl: './buy.component.html',
     styleUrl: './buy.component.scss',
@@ -46,12 +49,32 @@ export class BuyComponent implements OnInit {
     receivedId: string = '';
     productSelected: product = {};
     orderForm: FormGroup;
-
-    order: order = {};
+    theID:string='';
+    order: order={};
+    visible:boolean=false;
 
     userEmail: string = 'hamza.agourrame.05@gmail.com';
     subject: string = 'New Order';
-    message: any;
+    message: order={};
+
+    quantities: number[] = [1, 1, 1];
+
+    value: string = '';
+
+    checked: boolean = true;
+
+    checked2: boolean = true;
+
+    cities = [
+        { name: 'USA / New York', code: 'NY' },
+        { name: 'Italy / Rome', code: 'RM' },
+        { name: 'United Kingdoom / London', code: 'LDN' },
+        { name: 'Turkey / Istanbul', code: 'IST' },
+        { name: 'France / Paris', code: 'PRS' },
+    ];
+
+    selectedCity: string = '';
+
 
     constructor(
         private proservice: ProductService,
@@ -65,6 +88,7 @@ export class BuyComponent implements OnInit {
             name: ['', Validators.required],
             email: [''],
             address: ['', Validators.required],
+            phone:['',Validators.required],
             saveForNextPurchase: [false],
         });
     }
@@ -112,6 +136,7 @@ export class BuyComponent implements OnInit {
             this.order.address = this.orderForm.value.address + '';
             this.order.email = this.orderForm.value.email + '';
             this.order.customer = this.orderForm.value.name + '';
+            this.order.phone = this.orderForm.value.phone +'';
             this.order.date = new Date();
             this.order.order = this.quantities[0];
             this.order.product = this.productSelected;
@@ -124,8 +149,15 @@ export class BuyComponent implements OnInit {
             console.log(this.order);
             this.message = this.order;
             // Handle form submission
-            this.orderserv.AddOrder(this.order);
-            this.sendEmail();
+            this.orderserv.AddOrder(this.order).then((res)=>{
+                console.log(res)
+                this.message.path='http://localhost:4200/#/pages/orders/order?id='+res
+                console.log(this.message)
+                this.sendEmail();
+                this.visible=true;
+            });
+            //console.log(this.theID)
+            
         } else {
             console.log('Form is invalid');
         }
@@ -136,21 +168,7 @@ export class BuyComponent implements OnInit {
         console.log(this.quantities[0]);
     }
 
-    quantities: number[] = [1, 1, 1];
-
-    value: string = '';
-
-    checked: boolean = true;
-
-    checked2: boolean = true;
-
-    cities = [
-        { name: 'USA / New York', code: 'NY' },
-        { name: 'Italy / Rome', code: 'RM' },
-        { name: 'United Kingdoom / London', code: 'LDN' },
-        { name: 'Turkey / Istanbul', code: 'IST' },
-        { name: 'France / Paris', code: 'PRS' },
-    ];
-
-    selectedCity: string = '';
+    returnTotal(a:number,b:any){
+        return a*b;
+    }
 }

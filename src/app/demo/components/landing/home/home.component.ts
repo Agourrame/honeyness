@@ -6,7 +6,8 @@ import { CarouselModule } from 'primeng/carousel';
 import { TagModule } from 'primeng/tag';
 import { product } from 'src/app/demo/model/product';
 import { ProductService } from 'src/app/demo/services/product.service';
-
+import { SplitButtonModule } from 'primeng/splitbutton';
+import { MenuItem } from 'primeng/api';
 @Component({
   selector: 'app-home',
   standalone: true,
@@ -15,7 +16,8 @@ import { ProductService } from 'src/app/demo/services/product.service';
     CarouselModule,
     TagModule,
     ButtonModule,
-    RouterModule
+    RouterModule,
+    SplitButtonModule
   ],
   templateUrl: './home.component.html',
   styleUrl: './home.component.scss'
@@ -24,7 +26,7 @@ export class HomeComponent implements OnInit{
 
   products:product[]=[];
   responsiveOptions: any[]=[];
-
+  items: MenuItem[]=[];
   constructor(private proservice:ProductService,private router:Router){
 
   }
@@ -38,6 +40,21 @@ export class HomeComponent implements OnInit{
       console.log(ele)
       this.products = ele as product[];
   })
+
+  this.items = [
+       {
+        label: 'Franch',
+        command: () => {}
+       },
+       {
+        label: 'Arabic',
+        command: () => {}
+       },
+       {
+        label: 'English',
+        command: () => {}
+       }
+  ]
 
   this.responsiveOptions = [
     {

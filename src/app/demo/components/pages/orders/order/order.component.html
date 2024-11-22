@@ -1,21 +1,39 @@
 <div class="card">
-    <div class="text-900 font-bold text-4xl my-2">Name : {{order.customer +' '}}</div>
-    <p class="text-700 text-xl mt-0 mb-4 p-0">Date  : <p-chip [label]="order.date+''" /></p>
-    <p class="text-700 text-xl mt-0 mb-4 p-0">Address : {{order.address}}</p>
-    <p class="text-700 text-xl mt-0 mb-4 p-0">Tele : {{order.phone}}</p>
-    <p class="text-700 text-xl mt-0 mb-4 p-0">Email : {{order.email}}</p>
+
+    <div class="formgrid grid w-full">
+        <div class="field col">
+            <div class="text-900 font-bold text-4xl my-2">Name : {{order.customer +' '}}</div>
+            <p class="text-700 text-xl mt-0 mb-4 p-0"><b>Status</b>   :
+                <p-tag *ngIf="order.valid" icon="pi pi-check" severity="success" value="Valid" />
+                <p-tag *ngIf="!order.valid" icon="pi pi-times" severity="danger" value="Unvalid" />
+            </p>
+            <p class="text-600 text-xl mt-0 mb-4 p-0"> <b>Date</b>  : <p-chip [label]="order.date+''" /></p>
+            <p class="text-600 text-xl mt-0 mb-4 p-0"><b>Address</b>  : {{order.address}}</p>
+            <p class="text-600 text-xl mt-0 mb-4 p-0"><b>Tele</b>  : {{order.phone}}</p>
+            <p class="text-600 text-xl mt-0 mb-4 p-0"><b>Email</b>  : {{order.email}}</p>
+        </div>
+        <div class="field col flex align-items-center justify-content-end">
+            <qr-code [value]="order.id" 
+            size="200" 
+            errorCorrectionLevel="M" />
+        </div>
+    </div>
+
+
+
     <div style="height:3px;background:linear-gradient(90deg, var(--primary-color) 0%, rgba(33, 150, 243, 0) 50%);"></div>
 
     <div class="flex flex-column sm:flex-row sm:align-items-center sm:justify-content-between py-5">
         <div class="mb-3 sm:mb-0">
             <!-- <span class="font-medium text-xl text-900 mr-2">Order ID:</span>
             <span class="font-medium text-xl text-blue-500">{{order.id}}</span> -->
-            <p-tag *ngIf="order.valid" icon="pi pi-check" severity="success" value="Valid" />
-            <p-tag *ngIf="!order.valid" icon="pi pi-times" severity="danger" value="Unvalid" />
+
         </div>
         <div>
-            <button pButton pRipple label="Details" icon="pi pi-list" class="p-button-outlined p-button-primary mr-2"></button>
-            <button pButton pRipple label="Print" icon="pi pi-print" class="p-button-outlined p-button-primary"></button>
+            <p-button *ngIf="!order.valid" (click)="confirmation(true)" label="Confirm" class="mr-2" severity="success" />
+            <p-button *ngIf="order.valid" (click)="confirmation(false)" label="Unconfirm" class="mr-2" severity="secondary" />
+            <!-- <button pButton pRipple label="Details" icon="pi pi-list" class="p-button-outlined p-button-primary mr-2"></button>-->
+            <button pButton pRipple label="Print" icon="pi pi-print" class="p-button-outlined p-button-primary"></button> 
         </div>
     </div>
     <div class="border-round surface-border border-1">
@@ -25,7 +43,9 @@
                 <div class="flex flex-column">
                     <span class="text-900 font-semibold text-xl mb-2">{{order.product.label}}</span>
                     <span class="text-700 font-medium mb-3">{{order.product.description}}</span>
-                    <span class="text-900 font-medium">Quantity: {{order.order}}</span>
+                    <span class="text-900 font-medium">Quantity : <p-tag severity="info" [value]="order.order+''" /></span>
+                    <br>
+                    <span class="text-900 font-medium">Description : {{order.product.description}}</span>
                 </div>
                 <span class="text-900 font-medium text-lg ml-auto">{{order.total}} DH</span>
             </li>

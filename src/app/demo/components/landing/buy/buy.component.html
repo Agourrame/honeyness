@@ -16,6 +16,7 @@
             <div class="pb-3 surface-border">
                 <span class="text-900 font-medium text-xl">{{productSelected.label}}</span>
                 <br>
+                <br>
                 <span class="text-400 font-medium text-xl">{{productSelected.description}}</span>
             </div>
             <div class="flex flex-column lg:flex-row flex-wrap lg:align-items-center py-2 mt-3 surface-border">
@@ -26,7 +27,7 @@
                         <!-- <span class="text-900 font-bold">{{productSelected.price + ' DH'}}</span> -->
                     </div>
                     <div class="flex flex-auto justify-content-between align-items-center">
-                        <p-inputNumber [showButtons]="true" buttonLayout="horizontal" spinnerMode="horizontal" [min]="0" inputStyleClass="w-2rem text-center py-2 px-1 border-transparent outline-none shadow-none" (onInput)="showorder($event)" [(ngModel)]="quantities[0]" 
+                        <p-inputNumber [min]="1" [showButtons]="true" buttonLayout="horizontal" spinnerMode="horizontal"  inputStyleClass="w-2rem text-center py-2 px-1 border-transparent outline-none shadow-none" (onInput)="showorder($event)" [(ngModel)]="quantities[0]" 
                         class="border-1 surface-border border-round" decrementButtonClass="p-button-text text-600 hover:text-primary py-1 px-1" incrementButtonClass="p-button-text text-600 hover:text-primary py-1 px-1" incrementButtonIcon="pi pi-plus" decrementButtonIcon="pi pi-minus"></p-inputNumber>
                         <!-- <button pButton pRipple icon="pi pi-trash" class="p-button-text p-button-rounded"></button> -->
                     </div>
@@ -36,7 +37,7 @@
             <div class="py-2 mt-3">
                 <div class="flex justify-content-between align-items-center mb-3">
                     <span class="text-900 font-medium">Subtotal</span>
-                    <span class="text-900">$123.00</span>
+                    <span class="text-900">{{returnTotal(quantities[0],productSelected.price)}} DH</span>
                 </div>
                 <div class="flex justify-content-between align-items-center mb-3">
                     <span class="text-900 font-medium">Shipping</span>
@@ -44,7 +45,7 @@
                 </div>
                 <div class="flex justify-content-between align-items-center mb-3">
                     <span class="text-900 font-bold">Total</span>
-                    <span class="text-900 font-medium text-xl">$123.00</span>
+                    <span class="text-900 font-medium text-xl">{{returnTotal(quantities[0],productSelected.price)}} DH</span>
                 </div>
             </div>
 
@@ -65,6 +66,15 @@
                     Name is required.
                   </div>
                 </div>
+
+
+                <div class="col-12 field mb-4">
+                  <input id="phone" placeholder="Phone" type="text" formControlName="phone" class="p-inputtext w-full" />
+                  <div *ngIf="orderForm.get('phone')?.invalid && orderForm.get('phone')?.touched" class="text-red-500">
+                    phone is required.
+                  </div>
+                </div>
+                
                 
                 <div class="col-12 field mb-4">
                   <input id="email" placeholder="Email" type="text" formControlName="email" class="p-inputtext w-full" />
@@ -97,3 +107,15 @@
 </div>
 <br>
 <p-toast></p-toast>
+
+
+<p-dialog header="Edit Profile" [modal]="true" [(visible)]="visible">
+  <div style="display: flex;align-items: center; justify-content: center;flex-direction: column;gap: 15px;margin: 15px;">
+    <div style="font-size: 14px;font-weight: bold;">Sent seccussfully</div>
+    <i class="pi pi-check-circle checkvalid"  style="color: green"></i>
+  </div>
+
+  <div class="flex justify-content-end gap-2">
+      <p-button label="Save" (onClick)="visible = false" />
+  </div>
+</p-dialog>

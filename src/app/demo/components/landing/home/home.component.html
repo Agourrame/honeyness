@@ -1,9 +1,9 @@
-<div id="home"
-                class="grid grid-nogutter justify-content-between align-items-center mb-6 py-6 md:mb-8 md:py-8">
+<div id="home" class="grid grid-nogutter justify-content-between align-items-center mb-2 py-6 md:mb-4 md:py-8">
                 <div
                     class="col-12 md:col-4 flex flex-column gap-4 flex-order-1 md:flex-order-0 align-items-center md:align-items-start text-center md:text-left">
                     <span class="block text-900 font-bold text-4xl">Crafted by Nature, Delivered with Care</span>
                     <span class="block text-700 text-lg">Pure, Natural <b style="color: #fcd34e;">Honey</b> Straight from the Hive to Your Home</span>
+                    <p-splitButton label="Language" [model]="items" />
                     <ul class="flex flex-wrap gap-5 list-none p-0">
                         <li class="flex align-items-center">
                             <div class="p-1 border-circle bg-green-400 inline-block mr-2"></div>
@@ -15,10 +15,11 @@
                         </li>
                         <li class="flex align-items-center">
                             <div class="p-1 border-circle bg-green-400 inline-block mr-2"></div>
-                            <span class="text-900 font-semibold">Pure & Unprocessed</span>
+                            <span class="text-900 font-semibold">Pure</span>
                         </li>
                     </ul>
 
+                    
                 </div>
 
                 <div class="col-12 md:col-7 flex-order-0 md:flex-order-1 mb-6 md:mb-0 border-round" style="display: flex;align-items: center;justify-content: center;">
@@ -28,12 +29,25 @@
                 </div>
             </div> 
             
+            <!-- <div class="grid mt-8">
+                
+            </div> -->
             
+           
+            <div class="box p-4 w-full surface-card surface-border border-1 border-round">
+                <img src="assets/demo/images/landing/icon-support.svg" alt="honey icon" class="block mb-3" />
+                <span class="text-900 block font-semibold mb-3 text-lg">Pure Honey, Guaranteed</span>
+                <p class="m-0 text-secondary text-700">
+                    We pride ourselves on delivering 100% natural, unprocessed honey straight from our trusted hives to your table. 
+                    Your satisfaction is our priority, with prompt customer support to ensure every jar brings you joy.
+                </p>
+            </div>
             
+       
             
             
             <div id="pricing" class="my-5 py-6 md:my-8 md:py-8" >
-                <div class="text-900 font-bold text-5xl mb-4 text-center">Categories 1</div>
+                <div class="text-900 font-bold text-5xl mb-4 text-center">Forest Honey</div>
                 <span class="block text-700 text-lg text-center">Pure, Natural <b style="color: #775a00;">Honey</b> Straight from the Hive to Your Home</span>
                 <div class=" mt-4">
                     <p-carousel 
@@ -51,18 +65,18 @@
                                             <img 
                                                 [src]="product.img" 
                                                 [alt]="product.label" 
-                                                class="w-full border-round" />
-                                            <p-tag 
+                                                class="img-pro" />
+                                            <!-- <p-tag 
                                                 [value]="product.status"
                                                 class="absolute" 
-                                                [ngStyle]="{ 'left.px': 5, 'top.px': 5 }" />
+                                                [ngStyle]="{ 'left.px': 5, 'top.px': 5 }" /> -->
                                         </div>
                                     </div>
                                     <div class="mb-3 font-medium">
                                         {{ product.label }}
                                     </div>
                                     <div class="flex justify-content-between align-items-center">
-                                    <div class="mt-0 font-semibold text-xl text-yellow-400">
+                                    <div class="mt-0 font-semibold text-xl text-black-400">
                                         {{ product.price +' DH' }}
                                     </div>
                                     <span>
