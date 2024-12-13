@@ -4,6 +4,8 @@ import { ConfirmationService, MessageService } from 'primeng/api';
 import { Table } from 'primeng/table';
 import { ProductService } from 'src/app/demo/services/product.service';
 import { UploadEvent } from 'primeng/fileupload';
+import { AuthService } from 'src/app/demo/services/auth.service';
+import { Router } from '@angular/router';
 
 @Component({
     templateUrl: './crud.component.html',
@@ -34,7 +36,7 @@ export class CrudComponent implements OnInit {
 
     base64Image: string | undefined;
 
-    constructor(private messageService: MessageService, private confirmationService: ConfirmationService,private proserv:ProductService) { }
+    constructor(private messageService: MessageService, private confirmationService: ConfirmationService,private proserv:ProductService,private authserv:AuthService,private router:Router) { }
 
     ngOnInit() {
         //this.productService.getProducts().then(data => this.products = data);
@@ -155,5 +157,13 @@ export class CrudComponent implements OnInit {
         reader.onerror = (error) => {
           console.error('Error converting file to Base64:', error);
         };
+      }
+
+
+      logout(){
+        this.authserv.logout()
+        .then((res)=>{
+           this.router.navigate(['/auth/login'])
+        })
       }
 }

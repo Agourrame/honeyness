@@ -18,12 +18,12 @@ export class AppMenuComponent implements OnInit {
                     {
                         label: 'Products',
                         icon: 'pi pi-fw pi-pencil',
-                        routerLink: ['/pages/crud']
+                        routerLink: ['/admin/pages/crud']
                     },
                     {
                         label: 'orders',
                         icon: 'pi pi-fw pi-pencil',
-                        routerLink: ['/pages/orders']
+                        routerLink: ['/admin/pages/orders']
                     }
                 ]
             // },

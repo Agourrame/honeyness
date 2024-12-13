@@ -11,6 +11,10 @@ import { CarouselModule } from 'primeng/carousel';
 import { TagModule } from 'primeng/tag';
 import { HomeComponent } from './home/home.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { Carousel } from 'primeng/carousel';
+import { MultiSelectModule } from 'primeng/multiselect';
+import { Slider, SliderModule } from 'primeng/slider';
+import { Card, CardModule } from 'primeng/card';
 @NgModule({
     imports: [
         CommonModule,
@@ -22,7 +26,10 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
         CarouselModule,
         TagModule,
         ReactiveFormsModule,
-        FormsModule
+        FormsModule,
+        MultiSelectModule,
+        SliderModule,
+        CardModule
     ],
     declarations: [LandingComponent, AnimateEnterDirective]
 })
